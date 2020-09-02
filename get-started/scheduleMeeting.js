@@ -2,7 +2,7 @@ const dayStart = "07:30";
 const dayEnd = "17:45";
 
 function scheduleMeeting(startTime, durationMinutes) {
-  const normalizeTime = (time) => (time.length == 4 ? time.padStart(time.length + 1, "0") : time);
+  const normalizeTime = time => (time.length == 4 ? time.padStart(time.length + 1, "0") : time);
 
   function addMinutes(time, minutesToAdd) {
     time = normalizeTime(time);
@@ -18,8 +18,6 @@ function scheduleMeeting(startTime, durationMinutes) {
   startTime = normalizeTime(startTime);
   const endTime = addMinutes(startTime, durationMinutes);
   const dStart = normalizeTime(dayStart);
-
-  console.log(`startTime: ${startTime}, endTime: ${endTime}`);
 
   if (startTime < dStart) {
     return false;
