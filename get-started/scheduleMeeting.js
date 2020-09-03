@@ -19,15 +19,7 @@ function scheduleMeeting(startTime, durationMinutes) {
   const endTime = addMinutes(startTime, durationMinutes);
   const dStart = normalizeTime(dayStart);
 
-  if (startTime < dStart) {
-    return false;
-  }
-
-  if (startTime >= dayEnd || endTime > dayEnd) {
-    return false;
-  }
-
-  return true;
+  return startTime >= dStart && endTime <= dayEnd;
 }
 
 console.log(scheduleMeeting("7:00", 15)); // false
