@@ -1,8 +1,8 @@
 function range(start, end) {
-  function generateRange(start, end) {
+  function generateRange(s, e) {
     let range = [];
 
-    for (let i = start; i <= end; i++) {
+    for (let i = s; i <= e; i++) {
       range.push(i);
     }
 
