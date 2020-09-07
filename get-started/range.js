@@ -1,4 +1,14 @@
 function range(start, end) {
+  if (end !== undefined) {
+    if (start == end) {
+      return [end];
+    }
+
+    return generateRange(start, end);
+  } else {
+    return end => generateRange(start, end);
+  }
+
   function generateRange(s, e) {
     let range = [];
 
@@ -8,16 +18,6 @@ function range(start, end) {
 
     return range;
   }
-
-  if (end !== undefined) {
-    if (start == end) {
-      return [end];
-    }
-
-    return generateRange(start, end);
-  }
-
-  return end => generateRange(start, end);
 }
 
 console.log(range(3, 3)); // [3]
