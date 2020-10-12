@@ -8,13 +8,17 @@ function generateProducts(amount) {
   var products = [];
 
   for (let i = 0; i < amount; i++) {
-    let item = Object.create(product);
-    item.id = item.generateId();
-
-    products.push(item);
+    products.push(createItem());
   }
 
   return products;
+
+  function createItem() {
+    let item = Object.create(product);
+    item.id = item.getId();
+
+    return item;
+  }
 }
 
 let products = generateProducts(100);
