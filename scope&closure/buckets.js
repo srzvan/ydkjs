@@ -36,10 +36,7 @@ function buy() {
   // YELLOW - FUNCTION SCOPE (4)
   var boughtItems = [];
   var total = 0;
-  var selected = products.filter(function keepInterestingProducts(product) {
-    // ORANGE - FUNCTION SCOPE (5)
-    return product.isInStock && product.price > 15 && product.price < 75 && product.id % 3 === 0;
-  });
+  var selected = selectProducts();
 
   for (let product of selected) {
     // TURQUOISE - BLOCK SCOPE (6)
@@ -48,6 +45,13 @@ function buy() {
       boughtItems.push(product);
       total += product.price;
     }
+  }
+
+  function selectProducts() {
+    return products.filter(function keepInterestingProducts(product) {
+      // ORANGE - FUNCTION SCOPE (5)
+      return product.isInStock && product.price >= 15 && product.price <= 75;
+    });
   }
 
   return boughtItems;
