@@ -31,16 +31,28 @@ var isPrime = (function isPrimeWithCache() {
   return isPrime;
 })();
 
-function factorize(v) {
-  if (!isPrime(v)) {
-    let i = Math.floor(Math.sqrt(v));
+var factorize = function factorizeWithCache() {
+  var cache = {};
 
-    while (v % i != 0) {
-      i--;
+  function factorize(v) {
+    if (!isPrime(v)) {
+      let i = Math.floor(Math.sqrt(v));
+
+      while (v % i != 0) {
+        i--;
+      }
+
+      if (v in cache) {
+        return cache[v];
+      }
+
+      cache[v] = [...factorize(i), ...factorize(v / i)];
+
+      return cache[v];
     }
 
-    return [...factorize(i), ...factorize(v / i)];
+    return [v];
   }
 
-  return [v];
-}
+  return factorize;
+};
