@@ -1,17 +1,15 @@
-export default function calculator() {
-  var input = [];
+export { publicAPI as Calculator };
 
-  var publicAPI = {
-    number,
-    plus,
-    minus,
-    mult,
-    div,
-    eq,
-  };
+var publicAPI = {
+  number,
+  plus,
+  minus,
+  mult,
+  div,
+  eq,
+};
 
-  return publicAPI;
-}
+var input = [];
 
 function number(n) {
   var lastInputValue = input[input.length - 1];
