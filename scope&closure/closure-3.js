@@ -30,6 +30,8 @@ function calculator() {
     return key;
   };
 
+  /* ********************************************************************** */
+
   function equals() {
     var total = 0;
     var currentOperation = "";
