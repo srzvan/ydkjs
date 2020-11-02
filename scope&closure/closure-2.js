@@ -1,15 +1,17 @@
-function toggle() {
+function toggle(...args) {
   var currentIndex = 0;
 
-  function t() {
-    if (arguments.length == 0) {
+  return next;
+
+  /* **************************************** */
+
+  function next() {
+    if (args.length == 0) {
       return undefined;
     }
 
-    return arguments[currentIndex++ % arguments.length];
+    return args[currentIndex++ % args.length];
   }
-
-  return t.bind(null, ...arguments);
 }
 
 var hello = toggle("hello");
