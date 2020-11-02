@@ -1,40 +1,47 @@
 var isPrime = (function isPrimeWithCache() {
   var cache = {};
 
+  return isPrime;
+
+  /* ***************************** */
+
   function isPrime(v) {
+    if (v in cache) {
+      return cache[v];
+    }
+
     if (v <= 3) {
-      return v > 1;
+      return (cache[v] = v > 1);
     }
 
     if (v % 2 == 0 || v % 3 == 0) {
-      return false;
+      return (cache[v] = false);
     }
 
     var vSqrt = Math.sqrt(v);
 
     for (let i = 5; i <= vSqrt; i += 6) {
-      if (!(v in cache)) {
-        if (v % i == 0 || v % (i + 2) == 0) {
-          cache[v] = false;
-          break;
-        }
+      if (v % i == 0 || v % (i + 2) == 0) {
+        return (cache[v] = false);
       }
     }
 
-    if (!(v in cache)) {
-      cache[v] = true;
-    }
-
-    return cache[v];
+    return (cache[v] = true);
   }
-
-  return isPrime;
 })();
 
-var factorize = function factorizeWithCache() {
+var factorize = (function factorizeWithCache() {
   var cache = {};
 
+  return factorize;
+
+  /* ***************************************** */
+
   function factorize(v) {
+    if (v in cache) {
+      return cache[v];
+    }
+
     if (!isPrime(v)) {
       let i = Math.floor(Math.sqrt(v));
 
@@ -42,17 +49,9 @@ var factorize = function factorizeWithCache() {
         i--;
       }
 
-      if (v in cache) {
-        return cache[v];
-      }
-
-      cache[v] = [...factorize(i), ...factorize(v / i)];
-
-      return cache[v];
+      return (cache[v] = [...factorize(i), ...factorize(v / i)]);
     }
 
-    return [v];
+    return (factors[v] = [v]);
   }
-
-  return factorize;
-};
+})();
